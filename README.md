@@ -9,7 +9,9 @@ pip3 install -r requirements.txt
 
 ### CDB Profile Setup
 Copy your main Mesh CDB file to `Mesh-Connect/database/` folder
-Other CDB files please put into `Mesh-Connect/database/bullpen`
+
+#### More CDB Profiles
+Please put other CDB files in `Mesh-Connect/database/bullpen`
 
 ## Sample
 ### Load the main CDB file
