@@ -1,0 +1,3 @@
+COUNT = 'count'
+
+INTERVAL = 'interval'
