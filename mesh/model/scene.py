@@ -8,6 +8,7 @@ class Scene(Codable):
         self.name = 'Scene'
         self.addresses = []
         self.number = number
+        self.image = None
         if scene:
             self.decode(scene)
 
@@ -21,6 +22,8 @@ class Scene(Codable):
                 self.addresses = [int(address, 16) for address in v]
             elif k == cdb.NUMBER:
                 self.number = int(v, 16)
+            elif k == cdb.IMAGE:
+                self.image = v
             else:  # others or news
                 setattr(self, k, v)
 
@@ -29,4 +32,6 @@ class Scene(Codable):
         data[cdb.NAME] = self.name
         data[cdb.ADDRESSES] = ['%04X' % address for address in self.addresses]
         data[cdb.NUMBER] = '%04X' % self.number
+        if self.image:
+            data[cdb.IMAGE] = self.image
         return data
