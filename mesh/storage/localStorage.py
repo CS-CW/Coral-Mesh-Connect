@@ -13,6 +13,7 @@ _BULLPEN_DIR = os.path.join(_DB_DIR, 'bullpen')
 def _database_file():
     # the first cdb file will be the database file
     for dir_path, _, file_names in os.walk(_DB_DIR):
+        file_names[:] = [f for f in file_names if not f.startswith('.')]
         f = next(iter(file_names), None)
         return os.path.join(dir_path, f)
     return None
