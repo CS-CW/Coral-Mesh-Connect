@@ -2,7 +2,7 @@ import uuid
 
 from typing import Optional
 from mesh.model import Codable
-from mesh.cdb import appKeys as cdb
+from mesh.cdb import appKey as cdb
 
 
 class ApplicationKey(Codable):
@@ -22,13 +22,13 @@ class ApplicationKey(Codable):
             if k == cdb.NAME:
                 self.name = v
             elif k == cdb.INDEX:
-                self.index = int(v)
+                self.index = v
             elif k == cdb.KEY:
                 self._key = uuid.UUID(v)
             elif k == cdb.OLD_KEY:
                 self._oldKey = uuid.UUID(v)
             elif k == cdb.BOUND_NET_KEY:
-                self.boundNetKey = int(v)
+                self.boundNetKey = v
             else:  # others or news
                 setattr(self, k, v)
 

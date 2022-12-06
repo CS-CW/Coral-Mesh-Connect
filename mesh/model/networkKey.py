@@ -5,7 +5,7 @@ import dateutil.parser
 from typing import Optional
 from mesh.model import Codable
 from mesh.model.security import Security
-from mesh.cdb import netKeys as cdb
+from mesh.cdb import netKey as cdb
 
 
 class NetworkKey(Codable):
@@ -27,13 +27,13 @@ class NetworkKey(Codable):
             if k == cdb.NAME:
                 self.name = v
             elif k == cdb.INDEX:
-                self.index = int(v)
+                self.index = v
             elif k == cdb.KEY:
                 self.key = uuid.UUID(v)
             elif k == cdb.OLD_KEY:
                 self.oldKey = uuid.UUID(v)
             elif k == cdb.PHASE:
-                self.phase = int(v)
+                self.phase = v
             elif k == cdb.MIN_SECURITY:
                 self.minSecurity = v
             elif k == cdb.TIMESTAMP:
