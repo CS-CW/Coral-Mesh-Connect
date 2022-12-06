@@ -1,0 +1,3 @@
+DEGREE = 'degree'
+
+DISTANCE = 'distance'

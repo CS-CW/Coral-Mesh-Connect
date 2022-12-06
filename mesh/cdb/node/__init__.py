@@ -39,3 +39,25 @@ EXCLUDED = 'excluded'
 HEARTBEAT_PUB = 'heartbeatPub'
 
 HEARTBEAT_SUB = 'heartbeatSub'
+
+SCHEDULES = 'schedules'
+
+ICON = 'icon'
+
+TEMPORARY_GUEST = 'temporaryGuest'
+
+VIRTUAL_NODE = 'virtualNode'
+
+LOCATION = 'location'
+
+LIGHT_CONTROLS = 'lightControls'
+
+HEALTH_CONFIG = 'healthConfig'
+
+FOV = 'fov'
+
+IP_ADDRESS = 'ipAddress'
+
+MODBUS_TCP = 'modbusTcp'
+
+QR_CODE = 'qrCode'

@@ -34,6 +34,17 @@ class Node(Codable):
         self.excluded = False
         self.heartbeatPub = None
         self.heartbeatSub = None
+        self.schedules = []
+        self.icon = None
+        self.temporaryGuest = False
+        self.virtualNode = False
+        self.location = None
+        self.lightControls = []
+        self.healthConfig = None
+        self.fov = None
+        self.ipAddress = None
+        self.modbusTcp = None
+        self.qrCode = None
         if node:
             self.decode(node)
 
@@ -109,6 +120,44 @@ class Node(Codable):
                 from mesh.model.node.heartbeatSub import HeartbeatSubscription
                 self.heartbeatSub = HeartbeatSubscription(subscribe=v)
 
+            elif k == cdb.SCHEDULES:
+                from mesh.model.node.schedule import Schedule
+                self.schedules = [Schedule(schedule=s) for s in v]
+
+            elif k == cdb.ICON:
+                self.icon = v
+
+            elif k == cdb.TEMPORARY_GUEST:
+                self.temporaryGuest = v
+
+            elif k == cdb.VIRTUAL_NODE:
+                self.virtualNode = v
+
+            elif k == cdb.LOCATION:
+                from mesh.model.node.location import Location
+                self.location = Location(location=v)
+
+            elif k == cdb.LIGHT_CONTROLS:
+                from mesh.model.node.lc import LightLC
+                self.lightControls = [LightLC(lc=lc) for lc in v]
+
+            elif k == cdb.HEALTH_CONFIG:
+                from mesh.model.node.healthConfig import HealthConfig
+                self.healthConfig = HealthConfig(health_config=v)
+
+            elif k == cdb.FOV:
+                from mesh.model.node.fov import Fov
+                self.fov = Fov(fov=v)
+
+            elif k == cdb.IP_ADDRESS:
+                self.ipAddress = v
+
+            elif k == cdb.MODBUS_TCP:
+                self.modbusTcp = v
+
+            elif k == cdb.QR_CODE:
+                self.qrCode = v
+
             else:  # others or news
                 setattr(self, k, v)
 
@@ -137,6 +186,24 @@ class Node(Codable):
             data[cdb.HEARTBEAT_PUB] = self.heartbeatPub.encode()
         if self.heartbeatSub:
             data[cdb.HEARTBEAT_SUB] = self.heartbeatSub.encode()
+        data[cdb.SCHEDULES] = [schedule.encode() for schedule in self.schedules]
+        if self.icon:
+            data[cdb.ICON] = self.icon
+        data[cdb.TEMPORARY_GUEST] = self.temporaryGuest
+        data[cdb.VIRTUAL_NODE] = self.virtualNode
+        if self.location:
+            data[cdb.LOCATION] = self.location.encode()
+        data[cdb.LIGHT_CONTROLS] = [lc.encode() for lc in self.lightControls]
+        if self.healthConfig:
+            data[cdb.HEALTH_CONFIG] = self.healthConfig.encode()
+        if self.fov:
+            data[cdb.FOV] = self.fov.encode()
+        if self.ipAddress:
+            data[cdb.IP_ADDRESS] = self.ipAddress
+        if self.modbusTcp:
+            data[cdb.MODBUS_TCP] = self.modbusTcp
+        if self.qrCode:
+            data[cdb.QR_CODE] = self.qrCode
         return data
 
     @property
